@@ -1,0 +1,20 @@
+image: kicad/kicad:nightly
+
+before_script:
+  - git config --global --add safe.directory ${CI_PROJECT_DIR}
+
+stages:
+  - run_erc
+  - gen_doc
+  - run_drc
+  - gen_fab
+
+documentation:
+  stage: gen_fab
+  script:
+    - "./generate_output.sh"
+  artifacts:
+    paths:
+      - Output/
+      - Fabrication/
+      - LED-Cube.zip
