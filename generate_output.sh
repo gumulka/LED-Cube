@@ -20,8 +20,8 @@ zip -qrD ${PROJECT} Gerbers
 ## BOM
 mkdir Fabrication
 ${KICAD} sch export netlist ${PROJECT}.kicad_sch --format kicadxml -o Fabrication/${PROJECT}.xml
-if [ -e /usr/share/kicad-nightly/plugins/bom_csv_grouped_extra.py ]; then
-    /usr/bin/python3 "/usr/share/kicad-nightly/plugins/bom_csv_grouped_extra.py" "Fabrication/${PROJECT}.xml" "Fabrication/${PROJECT}_bom.csv" "LCSC#"
+if [ -e /usr/share/kicad/plugins/bom_csv_grouped_extra.py ]; then
+    /usr/bin/python3 "/usr/share/kicad/plugins/bom_csv_grouped_extra.py" "Fabrication/${PROJECT}.xml" "Fabrication/${PROJECT}_bom.csv" "LCSC#"
 fi
 if command -v kicost &> /dev/null
 then
@@ -36,7 +36,9 @@ sed -i "s/PosY/\"Mid Y\"/g" ${PROJECT}.pos
 sed -i "s/Rot/\"Rotation\"/g" ${PROJECT}.pos
 sed -i "s/Side/\"Layer\"/g" ${PROJECT}.pos
 sed -i "s/Val/\"Value\"/g" ${PROJECT}.pos
-mv ${PROJECT}.pos Fabrication/${PROJECT}_pos.csv
+./fix_rotation -i ${PROJECT}.pos -o Fabrication/${PROJECT}_pos.csv
+rm ${PROJECT}.pos
+
 
 
 ## Schematics

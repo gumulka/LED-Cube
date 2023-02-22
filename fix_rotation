@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+
+import argparse
+
+mappings = {
+    "QFN-28": 270,
+    "SOT-223": 180,
+    "SOT-23": 180
+}
+
+class LineItem():
+    def __init__(self, line: str) -> None:
+        temp = line.split(",")
+        self.designator = temp[0]
+        self.value = temp[1]
+        self.package = temp[2]
+        self.mid_x = float(temp[3])
+        self.mid_y = float(temp[4])
+        self.rotation = float(temp[5])
+        self.layer = temp[6]
+
+    def matches(self, compares: str) -> bool:
+        if compares in self.designator:
+            return True
+        if compares in self.value:
+            return True
+        if compares in self.package:
+            return True
+        return False
+
+    def rotate_by(self, rotation: int) -> None:
+        self.rotation = self.rotation + rotation
+        pass
+
+    def __str__(self) -> str:
+        return self.designator + "," + self.value + "," + self.package + "," + str(self.mid_x) + "," + str(self.mid_y) + "," + str(self.rotation) + "," + self.layer
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+                    prog = 'Fix Rotation',
+                    description = 'Fixes rotation in position file for JLCPCB')
+    parser.add_argument("-i", "--infile")
+    parser.add_argument("-o", "--outfile")
+    args = parser.parse_args()
+    with open(args.infile) as infile:
+        with open(args.outfile, "w+") as outfile:
+            outfile.writelines([infile.readline()])
+            for line in infile.readlines():
+                item = LineItem(line)
+                for match, rot in mappings.items():
+                    if item.matches(match):
+                        item.rotate_by(rot)
+                outfile.write(str(item))
