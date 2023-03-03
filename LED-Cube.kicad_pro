@@ -531,6 +531,18 @@
     [
       "ef5a0a64-4609-47f7-abd9-aa22df0b8fca",
       "LED_ROW_8"
+    ],
+    [
+      "9fe5fc24-8d74-405d-9425-da73c80418ad",
+      "LED Layer"
+    ],
+    [
+      "2c115b83-e7c3-4d01-bef5-6fd3959af68c",
+      "Ethernet & ESP"
+    ],
+    [
+      "a18e8ac7-d4d8-4f91-8d3e-8a0bd52b666a",
+      "ESP Programmer"
     ]
   ],
   "text_variables": {}
