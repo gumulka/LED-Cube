@@ -574,6 +574,16 @@
     (uuid fd65cd5e-5957-48c5-8c05-58840f9cea9b)
   )
 
+  (text "OE: LOW: Outputs are enabled\n     HIGH: Outputs are disabled"
+    (at 35.56 120.65 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 10b68ddd-9c19-4c75-97b3-2d3020d03508)
+  )
+  (text "~{SRCLK}: Low: Shift registers are cleared" (at 31.75 127 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid c52e4122-7be9-41b7-aaf4-bd505c4b91b6)
+  )
+
   (label "LED_5" (at 203.2 88.9 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 0694c096-d5f5-4568-857f-04d4b2279536)
@@ -676,7 +686,7 @@
     (property "Footprint" "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" (at 88.9 90.17 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/74HC_HCT595.pdf" (at 88.9 90.17 0)
+    (property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74hcs596.pdf" (at 88.9 90.17 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid c87a39aa-c635-4150-9729-160d137291bc))
